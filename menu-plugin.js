@@ -23,6 +23,11 @@ window.onload = (e) => {
     L3 : { tag: "line", y1: "17.5", y2: "17.5", x1: "7.5", x2: "17.5", style: { stroke:"rgb(0,0,0)", "stroke-width":"2"} }
   }
 
+  const CONTACTIcon = {
+    circle1: { tag: "circle", cx: "12.5", cy: "17.5", r: "1.25", stroke: "black", "stroke-width": "1", fill: "black"},
+    circle2: { tag: "circle", cx: "12.5", cy: "7", r: "2", stroke: "black", "stroke-width": "1", fill: "black"},
+    path: { tag: "path", d: "M 10.5 7 l 2 7 l 2 -7 z", stroke: "black", fill: "black"}
+  }
 
   const backgroundAnimationConfig = {
     blur: {
@@ -77,7 +82,7 @@ window.onload = (e) => {
       if(prop === "app-links") {
         icon = createMenuIcon(SVG, APPSIcon);
       } else {
-        icon = createMenuIcon(SVG);
+        icon = createMenuIcon(SVG, CONTACTIcon);
       }
 
       icon.setAttribute('id', prop);
