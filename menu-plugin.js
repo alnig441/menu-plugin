@@ -86,9 +86,10 @@ window.onload = (e) => {
       }
 
       icon.setAttribute('id', prop);
-      icon.addEventListener("click", onClick);
+      // icon.addEventListener("click", onClick);
       span.append(icon);
       span.setAttribute("id", prop + "-icon");
+      span.addEventListener("click", onClick);
 
       if(isRight) {
         span.setAttribute("style", "padding-left:5px");
@@ -158,25 +159,22 @@ window.onload = (e) => {
   }
 
   function onClick(e) {
-    let target = e.target.tagName.toLowerCase();
-    console.log(e)
-    if(target === 'svg') {
-      e.stopPropagation();
-      e.preventDefault();
-      const sameAsPrevious = (typeOfMenuLinks[e.target.id] === invokedMenu || invokedMenu === "");
-      const menuIsPopulated =  (document.getElementById("app-menu-links").children.length > 0);
-      invokedMenu = typeOfMenuLinks[e.target.id];
+    let targetMenu = e.target.id.toLowerCase() || e.target.parentNode.id.toLowerCase();
+    e.stopPropagation();
+    e.preventDefault();
+    const sameAsPrevious = (typeOfMenuLinks[targetMenu] === invokedMenu || invokedMenu === "");
+    const menuIsPopulated =  (document.getElementById("app-menu-links").children.length > 0);
+    invokedMenu = typeOfMenuLinks[targetMenu] ;
 
-      if(!menuIsPopulated) {
-        showMenu();
-      }
-      else if(menuIsPopulated && !sameAsPrevious) {
-        clearMenu();
-        showMenu();
-      }
-      else {
-        hideMenu();
-      }
+    if(!menuIsPopulated) {
+      showMenu();
+    }
+    else if(menuIsPopulated && !sameAsPrevious) {
+      clearMenu();
+      showMenu();
+    }
+    else {
+      hideMenu();
     }
   }
 
