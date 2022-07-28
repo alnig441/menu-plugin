@@ -204,9 +204,25 @@ window.onload = (e) => {
       liStyle += menuPosition.hasOwnProperty("top") ? "margin-top:5px;" : "margin-bottom:5px;";
       liStyle += menuPosition.hasOwnProperty("right") ? "text-align:right;" : "text-align:left;";
 
-
+      let href = currentLink.getAttribute("href").split(":");
       let attr = currentLink.attributes;
-      let text = currentLink.innerText;
+      let text ;
+
+      switch(href[0]) {
+        case "tel" :
+          text = " call me! ";
+          break;
+        case "sms" :
+          text = " text me! ";
+          break;
+        case "mailto" :
+          text = " mail me! ";
+          break;
+        default :
+          text = currentLink.innerText;
+          break;
+      }
+
       let li = document.createElement("li");
       li.setAttribute("style", liStyle);
       let a = document.createElement("a");
