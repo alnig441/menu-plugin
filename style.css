@@ -1,0 +1,46 @@
+#app-menu-links {
+  padding: 0px;
+  margin: 0px;
+  display: block;
+  list-style: none;
+}
+
+@keyframes blur {
+  from { opacity: 1 }
+  to { opacity: 0.15 }
+}
+
+@keyframes unblur {
+  from { opacity: 0.15 }
+  to { opacity: 1 }
+}
+
+@keyframes menu-bottom {
+  from {
+    opacity: 0 ;
+    bottom: -100px;
+  }
+  to {
+    opacity: 1 ;
+    bottom: 0px;
+  }
+}
+
+@keyframes menu-top {
+  from { opacity: 0; top: -100px, }
+  to { opacity: 1; top: 0px; }
+}
+
+#app-menu-links li {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 3x;
+  /* border-right: 2px solid black; */
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+#app-menu-links > li > a {
+  animation-delay: 0;
+}
