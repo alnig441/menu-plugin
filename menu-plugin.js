@@ -88,6 +88,7 @@ window.onload = (e) => {
       if(isRight) {
         span.setAttribute("style", "padding-left:5px");
         iconDiv.prepend(span);
+        iconDiv.setAttribute("style", "text-align:right")
       } else {
         span.setAttribute("style", "padding-right: 5px");
         iconDiv.append(span);
