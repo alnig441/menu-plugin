@@ -86,7 +86,6 @@ window.onload = (e) => {
       }
 
       icon.setAttribute('id', prop);
-      // icon.addEventListener("click", onClick);
       span.append(icon);
       span.setAttribute("id", prop + "-icon");
       span.addEventListener("click", onClick);
@@ -176,16 +175,19 @@ window.onload = (e) => {
     else {
       hideMenu();
     }
+    return;
   }
 
   function showMenu() {
     document.getElementById("main").setAttribute("style", extractStyle(backgroundAnimationConfig.blur));
-    document.getElementById("app-menu-links").append(insertLink())
+    document.getElementById("app-menu-links").append(insertLink());
+    return;
   }
 
   function hideMenu() {
     document.getElementById("main").setAttribute("style", extractStyle(backgroundAnimationConfig.unblur));
     clearMenu();
+    return;
   }
 
   function clearMenu() {
@@ -210,7 +212,7 @@ window.onload = (e) => {
 
       switch(href[0]) {
         case "tel" :
-          text = " call me! ";
+          text = "call me!";
           break;
         case "sms" :
           text = " text me! ";

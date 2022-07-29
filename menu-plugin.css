@@ -36,11 +36,11 @@
   border: none;
   background: transparent;
   padding: 3x;
-  /* border-right: 2px solid black; */
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
 }
 
 #app-menu-links > li > a {
   animation-delay: 0;
+  padding: 0 5px;
 }
