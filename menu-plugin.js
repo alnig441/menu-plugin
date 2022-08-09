@@ -128,17 +128,20 @@ window.onload = (e) => {
 
   function sortLinks() {
     const allowed = ["https", "tel", "mailto", "sms"];
+    let linkHrefs = [];
 
     for(var link in links) {
+
       let enumerable = (typeof parseInt(link) === "number" && !isNaN(parseInt(link)));
 
       if(enumerable) {
-        console.log('link: ', links[link].className);
         let current = links[link];
         let href = links[link].getAttribute("href").split(":");
         let isAllowed = allowed.includes(href[0]);
 
-        if(allowed) {
+        let isDuplicate = checkIfDuplicate(current);
+
+        if(allowed && !isDuplicate) {
           switch(current.className) {
             case "app" :
               typeOfMenuLinks["app-links"].push(current);
@@ -153,6 +156,19 @@ window.onload = (e) => {
       }
     }
     return;
+
+    function checkIfDuplicate(current) {
+      let result = linkHrefs.filter((href) => {
+        return (href === current.href);
+      })
+      if (result.length > 0) {
+        return true;
+      } else {
+        linkHrefs.push(current.href);
+        return false;
+      }
+    }
+
   }
 
   function createMenuIcon(parent, children) {
