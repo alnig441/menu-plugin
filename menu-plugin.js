@@ -1,5 +1,6 @@
-window.onload = (e) => {
+'use strict';
 
+window.onload = (e) => {
   const menuContainerExists = (document.getElementById("app-menu")) ? true : false;
   const links = document.getElementsByTagName('a');
   const typeOfMenuLinks = {
@@ -64,6 +65,23 @@ window.onload = (e) => {
     menuContainer = document.getElementById("app-menu");
     setMenuPosition(menuContainer.getAttribute("class"));
   }
+  let isInserted = false;
+
+/** Make menu available on scroll **/
+/** implement animation/transition **/
+
+  // window.addEventListener("wheel", function(e) {
+  //   if(!isInserted && e.deltaY > 0 && window.scrollY > 10) {
+  //     console.log('links inserted? ', isInserted)
+  //     isInserted = true;
+  //     console.log('lets insert links', isInserted)
+  //   }
+  //   else if(isInserted && e.deltaY < 0 && window.scrollY < 10) {
+  //     console.log("links inserted?", isInserted)
+  //     console.log('lets remove links');
+  //     isInserted = false;
+  //   }
+  // })
 
   sortLinks();
   initAppMenuContainer();
@@ -115,17 +133,20 @@ window.onload = (e) => {
       let enumerable = (typeof parseInt(link) === "number" && !isNaN(parseInt(link)));
 
       if(enumerable) {
+        console.log('link: ', links[link].className);
         let current = links[link];
         let href = links[link].getAttribute("href").split(":");
         let isAllowed = allowed.includes(href[0]);
 
         if(allowed) {
-          switch(href[0].toLowerCase()) {
-            case "https"  :
+          switch(current.className) {
+            case "app" :
               typeOfMenuLinks["app-links"].push(current);
               break;
-            default :
+            case "detail" :
               typeOfMenuLinks["contact-links"].push(current);
+              break;
+            default:
               break;
           }
         }
@@ -210,20 +231,27 @@ window.onload = (e) => {
       let attr = currentLink.attributes;
       let text ;
 
-      switch(href[0]) {
-        case "tel" :
-          text = "call me!";
-          break;
-        case "sms" :
-          text = " text me! ";
-          break;
-        case "mailto" :
-          text = " mail me! ";
-          break;
-        default :
-          text = currentLink.innerText;
-          break;
+      if(currentLink.className === "detail") {
+        switch(href[0]) {
+          case "tel" :
+            text = "call me!";
+            break;
+          case "sms" :
+            text = " text me! ";
+            break;
+          case "mailto" :
+            text = " mail me! ";
+            break;
+          case "https" :
+            text = "visit me!";
+            break;
+          default:
+            break;
+        }
+      } else {
+        text = currentLink.innerText;
       }
+
 
       let li = document.createElement("li");
       li.setAttribute("style", liStyle);
