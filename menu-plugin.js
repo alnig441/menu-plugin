@@ -149,6 +149,9 @@ window.onload = (e) => {
             case "detail" :
               typeOfMenuLinks["contact-links"].push(current);
               break;
+            case "resource" :
+              typeOfMenuLinks["app-links"].push(current);
+              break;
             default:
               break;
           }
