@@ -141,10 +141,14 @@ window.onload = (e) => {
 
         let isDuplicate = checkIfDuplicate(current);
 
+        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
         if(allowed && !isDuplicate) {
           switch(current.className) {
             case "app" :
-              typeOfMenuLinks["app-links"].push(current);
+              if(!isMobile) {
+                typeOfMenuLinks["app-links"].push(current);
+              }
               break;
             case "detail" :
               typeOfMenuLinks["contact-links"].push(current);
